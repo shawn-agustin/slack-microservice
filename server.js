@@ -54,21 +54,6 @@ app.post('/upload', upload.single('file'), async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
-        if (!message || !channel) {
-            return res.status(400).json({ error: 'Message and channel are required' });
-        }
-
-        const response = await slackClient.chat.postMessage({
-            channel: channel,
-            text: message
-        });
-
-        res.json(response);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: error.message });
-    }
-});
 
 // Start the Express server
 app.listen(port, () => console.log(`Slack service running on port ${port}`));
